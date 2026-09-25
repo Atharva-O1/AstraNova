@@ -6,6 +6,9 @@ import { LoginScreen } from './src/screens/LoginScreen';
 import { RegisterScreen } from './src/screens/RegisterScreen';
 import { PatientDashboardScreen } from './src/screens/PatientDashboardScreen';
 import { DoctorDashboardScreen } from './src/screens/DoctorDashboardScreen';
+import { DoctorPatientsScreen } from './src/screens/DoctorPatientsScreen';
+import { PatientDetailScreen } from './src/screens/PatientDetailScreen';
+import { EvidenceViewerScreen } from './src/screens/EvidenceViewerScreen';
 import { colors } from './src/theme/colors';
 
 const { width } = Dimensions.get('window');
@@ -24,6 +27,12 @@ const AppContent: React.FC = () => {
         return <PatientDashboardScreen />;
       case 'DoctorDashboard':
         return <DoctorDashboardScreen />;
+      case 'DoctorPatients':
+        return <DoctorPatientsScreen />;
+      case 'PatientDetail':
+        return <PatientDetailScreen />;
+      case 'EvidenceViewer':
+        return <EvidenceViewerScreen />;
       default:
         return <LoginScreen />;
     }
