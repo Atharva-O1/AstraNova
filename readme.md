@@ -120,5 +120,41 @@ npm run serve
 ### Run Automated E2E Test Suite
 The automated test suite runs in headless mode using Chrome DevTools Protocol (CDP), testing all 8 scenarios and capturing high-resolution verification screenshots:
 ```bash
+# Run baseline authentication and patient flow tests
 npm run test:e2e
+
+# Run complete Doctor Mode clinical journey tests
+npm run test:doctor
 ```
+
+---
+
+## 🩺 Doctor Mode / Clinical Panel Architecture
+
+Doctor Mode provides authorized medical practitioners with rapid, evidence-grounded longitudinal patient intelligence:
+
+```
+src/
+├── services/
+│   ├── doctorDataService.ts    # Role-authorized patient cohorts, records & timelines
+│   └── aiService.ts            # Grounded RAG query synthesis & citation engine
+├── screens/
+│   ├── DoctorDashboardScreen.tsx # Cohort metrics, quick actions & recent patients
+│   ├── DoctorPatientsScreen.tsx  # Searchable patient registry (by name & ID)
+│   ├── PatientDetailScreen.tsx   # Case summary, timeline, AI search & records tabs
+│   └── EvidenceViewerScreen.tsx  # Document traceability & simulated lab report canvas
+└── types/
+    └── doctor.ts               # Demographics, timeline events, records & AI evidence
+```
+
+### Complete Doctor Clinical Journey:
+1. **Doctor Authentication**: Verify credentials & role-based routing (`MCI Council Reg: MCI-2018-88492`).
+2. **Doctor Dashboard**: View cohort size, recent records, pending reviews, and recent patient cards.
+3. **Patients Registry**: Instant name or Patient ID filter (e.g. `P-1024`, `Rahul`, `Priya`, `Aman`).
+4. **Patient Case Summary**: Distinguishes verified clinical data from AI interpretations; displays vitals, allergies, recent history, findings, and current prescriptions.
+5. **Health Timeline**: Chronological events across lab tests, OPD consultations, and prescriptions with direct record links.
+6. **Medical Records**: Document type, date, physician, hospital source, and OCR extraction status.
+7. **AI Medical Search**: Natural-language clinical queries strictly scoped to the selected patient's records.
+8. **Evidence Citation**: Grounded answers citing source document, test date, and verbatim extracted snippet.
+9. **Zero-Hallucination Safeguard**: Queries outside patient records return strict no-evidence notice.
+10. **Evidence Viewer**: Full traceability metadata, structured parameter tables with abnormal flags (`LOW`/`HIGH`), and simulated original laboratory letterhead.

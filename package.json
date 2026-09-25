@@ -23,7 +23,8 @@
     "web": "expo start --web",
     "build:web": "expo export -p web",
     "serve": "node serve-dist.js",
-    "test:e2e": "node run-e2e-tests.js"
+    "test:e2e": "node run-e2e-tests.js",
+    "test:doctor": "node run-doctor-e2e-tests.js"
   },
   "private": true
 }

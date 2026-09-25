@@ -12,10 +12,25 @@ export interface LoginFormErrors {
   general?: string;
 }
 
-export type RootRoute = 'Login' | 'Register' | 'PatientDashboard' | 'DoctorDashboard';
+export type RootRoute =
+  | 'Login'
+  | 'Register'
+  | 'PatientDashboard'
+  | 'DoctorDashboard'
+  | 'DoctorPatients'
+  | 'PatientDetail'
+  | 'EvidenceViewer';
+
+export type PatientDetailTab = 'overview' | 'timeline' | 'ai-search' | 'records';
 
 export interface RouteParams {
   role?: UserRole;
   userIdentifier?: string;
   userName?: string;
+  patientId?: string;
+  activeTab?: PatientDetailTab;
+  recordId?: string;
+  searchQuery?: string;
+  highlightText?: string;
+  sourceScreen?: RootRoute;
 }
